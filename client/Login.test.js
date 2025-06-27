@@ -27,11 +27,12 @@ describe('Login Component', () => {
   });
 
   test('switches to register mode', () => {
-    render(<Login onLogin={mockOnLogin} />);
-    fireEvent.click(screen.getByText('Create Account'));
-    expect(screen.getByText('Create Account')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Confirm Password')).toBeInTheDocument();
-  });
+  render(<Login onLogin={mockOnLogin} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Create Account' }));
+  
+  expect(screen.getByText('Welcome to TaskMasters')).toBeInTheDocument(); // or whatever the register header is
+  expect(screen.getByPlaceholderText('Confirm Password')).toBeInTheDocument();
+});
 
   test('validates form inputs', async () => {
     render(<Login onLogin={mockOnLogin} />);
